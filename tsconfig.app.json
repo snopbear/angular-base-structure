@@ -1,15 +1,24 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
+
+/*
+Configur services parallel 
+https://stackoverflow.com/questions/65846630/angular-11-tsconfig-path-aliases-not-recognized
+
+
+https://stackoverflow.com/questions/65846630/angular-11-tsconfig-path-aliases-not-recognized
+*/
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "baseUrl": "src",
+    "paths": {
+      "@core/*": ["app/m-core/*"],
+      "@core": ["app/m-core/index.ts"],
+      "@shared/*": ["app/m-shared/*"]
+    }
   },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "files": ["src/main.ts", "src/polyfills.ts"],
+  "include": ["src/**/*.d.ts"]
 }

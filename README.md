@@ -1,27 +1,133 @@
-# AngularBaseStructure
+my-app/
+├─ node_modules/
+├─ public/
+│ ├─ favicon.ico
+│ ├─ index.html
+│ ├─ robots.txt
+├─ src/
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+│ ├─ CoreModule
+│ ├──── State
+│ ├──── Models
+│ ├──── Services
+│ ├──── Utitlites
 
-## Development server
+│ ├─ SharedModule
+│ ├──── Directives
+│ ├──── Components
+│ ├──── Pipes
+│ ├──── Filters
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+├─ BlocksModule
+│ ├──── Directives
+│ ├──── Components
+│ ├──── Pipes
+│ ├──── Filters
 
-## Code scaffolding
+├─ FeatureModule
+│ ├──── Directives
+│ ├──── Components
+│ ├──── Pipes
+│ ├──── Filters
+│ ├──── Local Services
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+├─ .gitignore
+├─ package.json
+├─ README.md
 
-## Build
+# 1- Core Module - “Singleton module”
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+..........................................................
 
-## Running unit tests
+A- Application level concept means “imported only once and available throughout your app” and not a business use case.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+B- should be singleton through your application which mean should not be imported in your module except application module.
 
-## Running end-to-end tests
+C- Application module is the only module should have the Core Module
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+A- State
+B- Models
+C- Services [Shared Across the application]
+D- Utilities [Log Module]
+E- Interceptors
 
-## Further help
+# In Core Module avoid
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+A - Components
+B - Directives
+C - Services
+D - Pipes
+
+# All things belong to Generics will add to (Core Module)
+
+# example
+
+A- Logging
+B- Messaging
+
+.....................................................................................................................................................................................................................................................................................................................................................................
+
+# 2- Shared Module (Scope shared components)
+
+..........................................................
+
+"The module you want to share crose your application"
+
+# Contains
+
+A- Custome Components like [Rating , Datatable , Drop Down Lists , Generic Filter] and so on.
+
+# Avoid (Core Module contents)
+
+A- State
+B- Models
+C- Services
+D- Utilities
+E- Interceptors
+
+.....................................................................................................................................................................................................................................................................................................................................................................
+
+# 3- Shared Module (Scope usr interface)
+
+..........................................................
+
+1- Some component needs to be singleton through out usr application just imported as once.
+
+2- Block VS Core module they are the same concept they are singleton through out your application and they imported once in app module.
+
+3-Block VS Shared module they are the same from content from the same point view but the scope are diffrent.
+
+# Contains [Layout of application]
+
+A- Navbar
+B- Footer
+C- sidebar
+D- Loading Screen Directive
+E- Layout of your application
+F- Header Toolbar
+.....................................................................................................................................................................................................................................................................................................................................................................
+
+# 4- Feature Module 
+
+..........................................................
+
+- The New Story you add to your application or Business use cases,
+Add cart is a simple for feature module.
+
+- Core Module , Block Module they are not business use cases 
+
+
+
+#feature module not depend on other  feature module it can depend on SharedModule
+
+# Add to cart button in product module should be in shared
+# Cart counter in header should be in shared
+
+
+
+
+
+
+
+
+BLock Module can’t take feature module dependency it should be shared module
